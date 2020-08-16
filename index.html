@@ -3,6 +3,8 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -16,7 +18,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
-    html, body{
+    html,
+    body {
       height: 100%;
     }
 
@@ -36,18 +39,42 @@
       padding: 15px;
       margin: auto;
     }
+
+    #outer-div {
+      width: 100%;
+      text-align: center;
+    }
+
+    #inner-div {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 3px;
+      background-color: lightgray;
+      width: 200px; 
+      height: 250px;
+
+    }
+    img {
+      width: 100%;
+      
+    }
   </style>
 </head>
 
 <body class="text-center">
- 
-    <FORM name=loginForm>
-    
-    <input type="email" id="email" name="userName" placeholder="Ingrese email">
-    <input type=password name=password placeholder="Ingrese contraseña"> 
-    <input id="loginButton" type=submit value=Acceder>
-    
-    </FORM> 
+  <div id="outer-div">
+    <div id="inner-div">
+      <img src="img/login.png">
+      <form name=loginform>
+        
+        <input type="email" class="form-control" id="email" name="userName" placeholder="Ingrese email">
+        <input type=password class="form-control" name=password placeholder="Ingrese contraseña">
+        <input class="btn btn-primary btn-lg btn-block" id="loginButton" type=submit value=Acceder>
+
+      </form>
+    </div>
+  </div>
   </div>
 </body>
+
 </html>
