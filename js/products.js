@@ -24,9 +24,6 @@ function showCategoriesList(array){
 
        htmlContentToAppend += `
        
-       
-       
-       
        <div class="comte">
            <div class="row">
                <div class="col-3">

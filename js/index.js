@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function(e){
             if (formulario.userName.value=='yami@coso.com' && formulario.password.value=='1234'){ 
                 //document.form.submit(); 
                 window.location.href = "mainPage2.html";
-                //alert("coso");
+                localStorage.setItem('usuario', formulario.userName.value);
+                localStorage.setItem('contraseña', formulario.password.value);
             } 
             else{ 
                  alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
