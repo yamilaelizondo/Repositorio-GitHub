@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 window.location.href = "mainPage2.html";
                 localStorage.setItem('usuario', formulario.userName.value);
                 localStorage.setItem('contraseña', formulario.password.value);
+                alert("El usuario conectado es " + localStorage.getItem('usuario'));
             } 
             else{ 
                  alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
