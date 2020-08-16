@@ -4,7 +4,7 @@
 document.addEventListener("DOMContentLoaded", function(e){
     const formulario = document.getElementById("loginForm");
    
-        document.getElementById("loginButton").addEventListener("click", function(){ 
+        formulario.loginButton.addEventListener("click", function(){ 
             if (formulario.userName.value=='yami@coso.com' && formulario.password.value=='1234'){ 
                 //document.form.submit(); 
                 window.location.href = "mainPage2.html";
