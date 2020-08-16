@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         document.getElementById("loginButton").addEventListener("click", function(){ 
             if (document.loginForm.userName.value=='yami@coso.com' && document.loginForm.password.value=='1234'){ 
                 //document.form.submit(); 
-                window.location.href = "mainPage.html";
+                window.location.href = "mainPage2.html";
             } 
             else{ 
                  alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
