@@ -6,6 +6,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  <script src="js/index.js"></script>
+  <script src="js/init.js"></script>
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -38,28 +40,14 @@
 </head>
 
 <body class="text-center">
-  <script> 
-    function login(){
-    
-    if (document.loginForm.userName.value=='yami@coso.com' && document.loginForm.password.value=='1234'){ 
-            //document.form.submit(); 
-            window.location.href = "homePage.html";
-        } 
-        else{ 
-             alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
-        } 
-    } 
-    </script> 
+ 
     <FORM name=loginForm>
     
     <input type="email" id="email" name="userName" placeholder="Ingrese email">
     <input type=password name=password placeholder="Ingrese contraseña"> 
-    <input onclick=login() type=submit value=Acceder>
+    <input id="loginButton" type=submit value=Acceder>
     
     </FORM> 
   </div>
-
-  <script src="js/init.js"></script>
-  <script src="js/login.js"></script>
 </body>
 </html>
