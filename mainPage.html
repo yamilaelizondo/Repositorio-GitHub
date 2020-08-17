@@ -23,9 +23,13 @@
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       </div>
       <script>
+        const autentificacion = false;
         function validar(){
-        if (localStorage.getItem("usuario") == null || localStorage.getItem("usuario") == undefined){
+        if (localStorage.getItem("usuario") == null || localStorage.getItem("usuario") == undefined || localStorage.getItem("usuario") == ""){
+          alert("Debe iniciar sesión");
           window.location.href = "index.html";
+        } else {
+          autentificacion = true
         }
       }
       </script>
