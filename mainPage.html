@@ -23,6 +23,7 @@
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       </div>
       <script>
+        document.addEventListener("DOMContentLoaded", function (e) {
         const autentificacion = false;
         function validar(){
         if (localStorage.getItem("usuario") == null || localStorage.getItem("usuario") == undefined || localStorage.getItem("usuario") == ""){
@@ -32,6 +33,7 @@
           autentificacion = true
         }
       }
+    });
       </script>
     </nav>
     <main role="main">
