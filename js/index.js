@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 //document.form.submit(); 
                 window.location.href = "mainPage.html";
                 localStorage.setItem('usuario', formulario.userName.value);
-                localStorage.setItem('contraseña', formulario.password.value);
+                localStorage.setItem('contrasenia', formulario.password.value);
                 alert("El usuario conectado es " + localStorage.getItem('usuario'));
             } 
             else{ 

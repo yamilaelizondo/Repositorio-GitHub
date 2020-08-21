@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded",function() {
     a.href = "#";
     a.innerHTML = localStorage.getItem("usuario");
     document.getElementById("case").appendChild(a);
+    
     var botoncerrasesion = document.createElement("button");
     botoncerrasesion.classList.add("py-2", "d-none", "d-md-inline-block");
     botoncerrasesion.type="button";
@@ -11,8 +12,9 @@ document.addEventListener("DOMContentLoaded",function() {
     botoncerrasesion.innerText= "Cerrar sesión";
     botoncerrasesion.id="cerrar_btn";
     document.getElementById("case").appendChild(botoncerrasesion);
-
-
+    localStorage.removeItem ("usuario");
+    
+    
 }
 
 , false);
