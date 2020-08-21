@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded",function() {
     botoncerrasesion.innerText= "Cerrar sesión";
     botoncerrasesion.id="cerrar_btn";
     document.getElementById("case").appendChild(botoncerrasesion);
-    document.getElementById("cerra_btn").addEventListener ("click", function{
+    document.getElementById("cerrar_btn").addEventListener ("click", function() {
         localStorage.removeItem ("usuario");
         window.location.href = "index.html";
         window.location.reload();
 
 
-    })
+    });
 
     
 }
