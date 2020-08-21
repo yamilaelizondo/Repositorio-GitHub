@@ -12,8 +12,14 @@ document.addEventListener("DOMContentLoaded",function() {
     botoncerrasesion.innerText= "Cerrar sesión";
     botoncerrasesion.id="cerrar_btn";
     document.getElementById("case").appendChild(botoncerrasesion);
-    localStorage.removeItem ("usuario");
-    
+    document.getElementById("cerra_btn").addEventListener ("click", function{
+        localStorage.removeItem ("usuario");
+        window.location.href = "index.html";
+        window.location.reload();
+
+
+    })
+
     
 }
 
