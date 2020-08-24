@@ -19,7 +19,7 @@ function showCategoriesList(array){
        let category = array[i];
 
        htmlContentToAppend += `
-
+       <a href="product-list.html" class="list-group-item list-group-item-action">
        <div class="comte">
            <div class="row">
                <div class="col-3">
