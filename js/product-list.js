@@ -1,5 +1,5 @@
-const ORDER_ASC_BY_NAME = "AZ";
-const ORDER_DESC_BY_NAME = "ZA";
+const ORDER_ASC_BY_NAME = "Menor a Mayor";
+const ORDER_DESC_BY_NAME = "Mayor a Menor";
 const ORDER_BY_PROD_SOLD= "Cant.";
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
@@ -11,14 +11,14 @@ function sortCategories(criteria, array){
     if (criteria === ORDER_ASC_BY_NAME)
     {
         result = array.sort(function(a, b) {
-            if ( a.name < b.name ){ return -1; }
-            if ( a.name > b.name ){ return 1; }
+            if ( a.cost < b.cost ){ return -1; }
+            if ( a.cost > b.cost ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_DESC_BY_NAME){
         result = array.sort(function(a, b) {
-            if ( a.name > b.name ){ return -1; }
-            if ( a.name < b.name ){ return 1; }
+            if ( a.cost > b.cost ){ return -1; }
+            if ( a.cost < b.cost ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_BY_PROD_SOLD){
@@ -41,8 +41,8 @@ function showCategoriesList(){
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){
 
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
@@ -55,7 +55,8 @@ function showCategoriesList(){
                             <h4 class="mb-1">`+ category.name +`</h4>
                             <small class="text-muted">` + category.soldCount + ` vendidos</small>
                         </div>
-                        <p class="mb-1">` + category.description + `</p>
+                        <p class="mb-1">` + category.description + `</p> 
+                        <p class="mb-1">` + category.currency + category.cost + `</p>
                     </div>
                 </div>
             </a>
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_BY_PROD_COUNT);
+        sortAndShowCategories(ORDER_BY_PROD_SOLD);
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
