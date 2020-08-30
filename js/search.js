@@ -1,74 +1,65 @@
-const search_input = document.getElementById('search');
-const results = document.getElementById('results');
-let productos;
-let search_term = '';
-const fetchProductos = async() => {
-    productos = await fetch(
-        'https://japdevdep.github.io/ecommerce-api/product/all.json'
-    ).then(res => res.json());
-};
-const showCountries = async() => {
-    results.innerHTML = '';
+document.addEventListener("DOMContentLoaded", () => {
 
-    await fetchProductos();
+    const search_input = document.getElementById('search');
+    const results = document.getElementById('results');
 
-    const ul = document.createElement('ul');
-    ul.id = "listar";
-    ul.classList.add('products');
+    var search_term = '';
+    var products;
 
-    productos
-        .filter(producto =>
-            producto.name.toLowerCase().includes(search_term.toLowerCase())
-        )
-        .forEach(producto => {
-            const li = document.createElement('li');
-            li.classList.add('products-item');
+    const fetchProducts = async() => {
+        products = await fetch(
+            'https://japdevdep.github.io/ecommerce-api/product/all.json'
+        ).then(res => res.json());
+    };
 
+    const showproducts = async() => {
+        results.innerHTML = '';
 
+        await fetchProducts();
 
-            const product_name = document.createElement('h3');
-            product_name.innerText = producto.name;
-            product_name.classList.add('product-name');
+        const table = document.createElement('table');
+        table.id = "listaResultados";
+        table.classList.add("media-table", "table-hover");
 
-            const product_info = document.createElement('div');
-            product_info.classList.add('product-info');
+        products
+            .filter(product =>
+                product.name.toLowerCase().includes(search_term.toLowerCase()) || product.description.toLowerCase().includes(search_term.toLowerCase()))
+            .forEach(product => {
+                const tr = document.createElement('tr');
+                //  li.classList.add('media-body');
 
-            const products_name = document.createElement('h2');
-            products_name.innerText = producto.name
-            products_name.classList.add('product-name');
+                const product_image = document.createElement('img');
+                product_image.src = product.imgSrc;
+                product_image.classList.add("image");
 
-            const product_image = document.createElement('img');
-            product_image.src = producto.imgSrc;
-            product_image.classList.add('product-img');
-            const product_cost = document.createElement('h5');
-            product_cost.innerText = producto.currency + producto.cost;
-            product_cost.classList.add('product_cost');
+                const product_name = document.createElement('strong');
+                product_name.innerText = product.name;
+                product_name.classList.add('product');
 
-            product_info.appendChild(product_cost);
+                const product_price = document.createElement('p');
+                product_price.innerText = Number(product.cost);
+                //  product_price.classList.add('product-population');
 
-            li.appendChild(product_name);
-            li.appendChild(product_image);
-            li.appendChild(product_info);
+                tr.appendChild(product_name);
+                tr.appendChild(product_price);
+                tr.appendChild(product_image);
 
-            ul.appendChild(li);
-        });
+                table.appendChild(tr);
 
-    results.appendChild(ul);
-};
+            });
+
+        results.appendChild(table);
+    };
 
 
 
-search_input.addEventListener('input', e => {
+    search_input.addEventListener('input', e => {
+        search_term = e.target.value;
+        if (search_term == "") {
+            document.getElementById("listaResultados").style.display = "none";
+        } else {
+            showproducts();
+        }
 
-    search_term = e.target.value;
-    if (search_term == "") {
-
-
-        document.getElementById("listar").style.display = "none";
-    } else {
-
-        showCountries();
-    }
-
-
+    });
 });
