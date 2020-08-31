@@ -1,7 +1,30 @@
-#searchDiv {
+#results {
+    position: absolute;
+    width: 900px;
+    overflow: hidden;
+    z-index: 100;
+}   
 
+.miniatura_tabla {
+    width: 40px;
 }
 
-#results {
+.tabla_resultados {
     
-}   
+}
+tr:hover {
+    background-color: rgb(17, 116, 173);
+  }
+
+table {
+    max-height: 50px;
+    position: fixed;
+    background-color: white;
+    cursor: pointer;
+}
+
+#searchDiv {
+    padding-top: 20px;
+    margin: auto ;
+    width: 900px;
+}

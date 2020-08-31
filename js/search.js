@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchProducts = async() => {
         products = await fetch(
-            'https://japdevdep.github.io/ecommerce-api/product/all.json'
+            PRODUCTS_URL
         ).then(res => res.json());
     };
 
@@ -19,32 +19,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const table = document.createElement('table');
         table.id = "listaResultados";
-        table.classList.add("media-table", "table-hover");
+        table.classList.add("table" , "table-hover");
 
         products
             .filter(product =>
                 product.name.toLowerCase().includes(search_term.toLowerCase()) || product.description.toLowerCase().includes(search_term.toLowerCase()))
             .forEach(product => {
                 const tr = document.createElement('tr');
+                const tdProductImage = document.createElement('td');
+                const tdProductName = document.createElement('td');
+                const tdProductPrice = document.createElement('td');
                 //  li.classList.add('media-body');
 
                 const product_image = document.createElement('img');
                 product_image.src = product.imgSrc;
-                product_image.classList.add("image");
+                tdProductImage.appendChild(product_image);
+                product_image.classList.add("miniatura_tabla");
 
                 const product_name = document.createElement('strong');
                 product_name.innerText = product.name;
-                product_name.classList.add('product');
+                tdProductName.appendChild(product_name);
+               // product_name.classList.add('product');
 
                 const product_price = document.createElement('p');
                 product_price.innerText = Number(product.cost);
+                tdProductPrice.appendChild(product_price);
                 //  product_price.classList.add('product-population');
-
-                tr.appendChild(product_name);
-                tr.appendChild(product_price);
-                tr.appendChild(product_image);
+                $('table td').attr('scope','row');
+                tr.appendChild(tdProductName);
+                tr.appendChild(tdProductPrice);
+                tr.appendChild(tdProductImage);
 
                 table.appendChild(tr);
+
 
             });
 
