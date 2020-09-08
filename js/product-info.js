@@ -1,4 +1,6 @@
 var product = {};
+var currentProductsArray = [];
+var productRelacionados = [];
 
 function showImagesGallery(array){
 
@@ -16,6 +18,12 @@ function showImagesGallery(array){
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+    }
+}
+
+function showProductosRelacionados (array){
+    for (let i = 0; i < array.length; i++) {
+        productRelacionados.push (array[i]);
     }
 }
 
@@ -40,4 +48,26 @@ document.addEventListener("DOMContentLoaded", function(e){
             showImagesGallery(product.images);
         }
     });
+});
+//Productos relacionados
+getJSONData(PRODUCTS_URL).then(function(resultObj){
+    let htmlContentToAppend = "";
+    if (resultObj.status === "ok"){
+        currentProductsArray = resultObj.data;
+        for (var i = 0; i <productRelacionados.length; i++) {
+            var imagenProducto = currentProductsArray[productRelacionados[i]].imgSrc
+            var nombreProducto = currentProductsArray[productRelacionados[i]].name
+            var precioProducto = currentProductsArray[productRelacionados[i]].cost
+            htmlContentToAppend += `
+            <div id="containerRelatedProduct" class="">
+              <div class="card-img-top">
+                 <img src="` + imagenProducto +`" class="img-thumbnail rounded mx-auto d-block" name="zoom" style="cursor:pointer"></div>
+               <h6 class="blockquote text-center"> `+ nombreProducto +`</h6>
+               <h6 class="blockquote text-center display-4">`+ precioProducto +`</h6>
+            </div>
+            ` 
+         document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
+        };
+
+    };
 });
