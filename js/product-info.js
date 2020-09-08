@@ -54,16 +54,17 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
     let htmlContentToAppend = "";
     if (resultObj.status === "ok"){
         currentProductsArray = resultObj.data;
-        for (var i = 0; i <productRelacionados.length; i++) {
+        for (var i = 0; i < productRelacionados.length; i++) {
             var imagenProducto = currentProductsArray[productRelacionados[i]].imgSrc
             var nombreProducto = currentProductsArray[productRelacionados[i]].name
             var precioProducto = currentProductsArray[productRelacionados[i]].cost
+            var pesoProducto = currentProductsArray[productRelacionados[i]].currency
             htmlContentToAppend += `
             <div id="containerRelatedProduct" class="">
               <div class="card-img-top">
                  <img src="` + imagenProducto +`" class="img-thumbnail rounded mx-auto d-block" name="zoom" style="cursor:pointer"></div>
                <h6 class="blockquote text-center"> `+ nombreProducto +`</h6>
-               <h6 class="blockquote text-center display-4">`+ precioProducto +`</h6>
+               <h6 class="blockquote text-center display-4">`+ precioProducto +``+ pesoProducto + `</h6>
             </div>
             ` 
          document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
