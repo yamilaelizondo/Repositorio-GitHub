@@ -33,8 +33,7 @@ function showProductosRelacionados (array){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
+        if (resultObj.status === "ok"){
             product = resultObj.data;
 
             let productNameHTML  = document.getElementById("productName");
@@ -47,9 +46,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showProductosRelacionados (product.relatedProducts);
         }
     });
-});
+
 //Productos relacionados
 getJSONData(PRODUCTS_URL).then(function(resultObj){
     let htmlContentToAppend = "";
@@ -73,10 +73,11 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
           </div>
             ` 
          document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
-        };
-
-    };
+        }
+    }
 });
+});
+
 //Comentarios productos
 getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
     if (resultObj.status === "ok"){
