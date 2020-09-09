@@ -1,7 +1,7 @@
 var product = {};
 var currentProductsArray = [];
 var productRelacionados = [];
-var productComents = []; 
+var productComments = []; 
 
 function showImagesGallery(array){
 
@@ -61,7 +61,7 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
             var precioProducto = currentProductsArray[productRelacionados[i]].cost
             var pesoProducto = currentProductsArray[productRelacionados[i]].currency
             htmlContentToAppend += `
-            <div id="containerRelatedProduct" class=""col-lg-3 col-md-4 col-6">
+            <div class=""col-lg-3 col-md-4 col-6">
               <div class="card-img-top">
                  <img src="` + imagenProducto +`" class="img-thumbnail rounded mx-auto d-block" name="zoom" style="cursor:pointer"></div>
                <h6 class="blockquote text-center"> `+ nombreProducto +`</h6>
@@ -75,6 +75,8 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
 });
 //Comentarios productos
 getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
-    productComents = resultObj.data;
-   };
+    if (resultObj.status === "ok"){
+    productComments = resultObj.data;
+
+    }
 });
