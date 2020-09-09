@@ -61,12 +61,16 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
             var precioProducto = currentProductsArray[productRelacionados[i]].cost
             var pesoProducto = currentProductsArray[productRelacionados[i]].currency
             htmlContentToAppend += `
-            <div class=""col-lg-3 col-md-4 col-6">
-              <div class="card-img-top">
-                 <img src="` + imagenProducto +`" class="img-thumbnail rounded mx-auto d-block" name="zoom" style="cursor:pointer"></div>
-               <h6 class="blockquote text-center"> `+ nombreProducto +`</h6>
-               <h6 class="blockquote text-center display-4">`+ precioProducto +``+ pesoProducto + `</h6>
-            </div>
+            <div class="card" style="width: 150px;">
+            <div class="card-body">
+                <div class="card-img-top">
+                    <img src="`+ imagenProducto +`" class="img-thumbnail rounded card-img-top" style="width: 150px;">
+                </div>
+                 <h6 class="card-title">` + nombreProducto +`</h6>
+                 <p class="card-text">`+ pesoProducto + ` ` + precioProducto +`</p>
+                 <a style="color: dodgerblue;" href="#">Ver más</a>
+             </div>
+          </div>
             ` 
          document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
         };
