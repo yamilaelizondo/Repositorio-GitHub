@@ -28,6 +28,8 @@ function showProductosRelacionados (array){
     }
 }
 
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -70,7 +72,7 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
                  <p class="card-text">`+ pesoProducto + ` ` + precioProducto +`</p>
                  <a style="color: dodgerblue;" href="#">Ver más</a>
              </div>
-          </div>
+        </div>
             ` 
          document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
         }
@@ -80,8 +82,35 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
 
 //Comentarios productos
 getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+    let htmlContentToAppend = "";
     if (resultObj.status === "ok"){
     productComments = resultObj.data;
-
+    for (var i = 0; i < productComments.length; i++) {
+        var userName = productComments[i].user
+        var comment = productComments[i].description
+        var commentDate = productComments[i].dateTime
+        htmlContentToAppend += `
+            <div class="card">
+                <div class="card-header">
+                <h3><a href="#">`+ userName + `</a></h3>
+                <small>` + commentDate + `</small>
+                </div>
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>` + comment + `</p>
+                        <p>
+                            <i style="color: gold;" class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </p>
+    
+                </blockquote>
+                </div>
+            </div>`
+            document.getElementById("productsComments").innerHTML = htmlContentToAppend;
+    }
+    
     }
 });
