@@ -70,7 +70,7 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
                 </div>
                  <h6 class="card-title">` + nombreProducto +`</h6>
                  <p class="card-text">`+ pesoProducto + ` ` + precioProducto +`</p>
-                 <a style="color: dodgerblue;" href="#">Ver más</a>
+                 <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
              </div>
         </div>
             ` 
@@ -86,9 +86,13 @@ getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
     if (resultObj.status === "ok"){
     productComments = resultObj.data;
     for (var i = 0; i < productComments.length; i++) {
-        var userName = productComments[i].user
-        var comment = productComments[i].description
-        var commentDate = productComments[i].dateTime
+        var userName = productComments[i].user;
+        var comment = productComments[i].description;
+        var commentDate = productComments[i].dateTime;
+        var commentScore = productComments[i].score;
+        var textToAppend = "";
+        textToAppend = muestroEstrellas (textToAppend,commentScore);
+        
         htmlContentToAppend += `
             <div class="card">
                 <div class="card-header">
@@ -98,14 +102,7 @@ getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
                 <div class="card-body">
                 <blockquote class="blockquote mb-0">
                     <p>` + comment + `</p>
-                        <p>
-                            <i style="color: gold;" class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </p>
-    
+                    `+ textToAppend + ` 
                 </blockquote>
                 </div>
             </div>`
@@ -114,3 +111,61 @@ getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
     
     }
 });
+
+function muestroEstrellas (textToAppend,score) {
+    if (score == 1){
+        textToAppend = `
+        <p>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </p>`
+    }
+    if (score == 2){
+        textToAppend = `
+        <p>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </p>`
+    }
+    if (score == 3){
+        textToAppend = `
+        <p>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </p>`
+    }
+    if (score == 4){
+        textToAppend = `
+        <p>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </p>`
+    }
+    if (score == 5){
+        textToAppend = `
+        <p>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+            <i style="color: gold;" class="fa fa-star"></i>
+        </p>`
+    }
+ return textToAppend
+}
+ 
+document.getElementById("btnComment").addEventListener("click",function(){
+
+})
