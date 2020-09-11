@@ -96,12 +96,12 @@ getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         htmlContentToAppend += `
             <div class="card">
                 <div class="card-header">
-                <h3><a href="#">`+ userName + `</a></h3>
+                <h5><a href="#">`+ userName + `</a></h5>
                 <small>` + commentDate + `</small>
                 </div>
                 <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>` + comment + `</p>
+                    <h6>` + comment + `</h6>
                     `+ textToAppend + ` 
                 </blockquote>
                 </div>
