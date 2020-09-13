@@ -64,21 +64,20 @@ getJSONData(PRODUCTS_URL).then(function(resultObj){
             var pesoProducto = currentProductsArray[productRelacionados[i]].currency
             htmlContentToAppend += `
             <div class="card" style="width: 150px;">
-            <div class="card-body">
-                <div class="card-img-top">
-                    <img src="`+ imagenProducto +`" class="img-thumbnail rounded card-img-top" style="width: 150px;">
+                <div class="card-body">
+                    <div class="card-img-top">
+                        <img src="`+ imagenProducto +`" class="img-thumbnail rounded card-img-top" style="width: 150px;">
+                     </div>
+                    <h6 class="card-title">` + nombreProducto +`</h6>
+                    <p class="card-text">`+ pesoProducto + ` ` + precioProducto +`</p>
+                    <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
                 </div>
-                 <h6 class="card-title">` + nombreProducto +`</h6>
-                 <p class="card-text">`+ pesoProducto + ` ` + precioProducto +`</p>
-                 <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
-             </div>
-        </div>
-            ` 
+            </div> ` 
          document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
         }
     }
 });
-});
+
 
 //Comentarios productos
 getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
@@ -193,4 +192,4 @@ document.getElementById("btnComment").addEventListener("click",function(){
         document.getElementById("productsComments").innerHTML = oldComments + htmlContentToAppend;
         document.getElementById("commentArea").value = '';
 })
-
+});
