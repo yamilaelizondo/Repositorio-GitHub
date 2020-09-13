@@ -165,9 +165,32 @@ function muestroEstrellas (textToAppend,score) {
     }
  return textToAppend
 }
- 
+
 document.getElementById("btnComment").addEventListener("click",function(){
-    document.getElementById("scoreSelector").value;
-    document.getElementById("commentArea").value;
+    //var comentario = document.getElementById("commentArea").value;
+    //var puntaje = document.getElementById("scoreSelector").value;
+    //var fecha = new Date().toLocaleString();
+    //var usuario = localStorage.getItem("usuario");
+    alert(localStorage.getItem('usuario') +" "+ "Gracias por tu comentario");
+    window.location.href = "product-info.html"; 
+
+    //var textToAppend = "";
+   // textToAppend = muestroEstrellas (textToAppend,puntaje);
+
+    htmlContentToAppend += `
+            <div class="card">
+                <div class="card-header">
+                <h5><a href="#">`+ usuario + `</a></h5>
+                <small>` + fecha + `</small>
+                </div>
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <h6>` + comentario + `</h6>
+                    `+ textToAppend + ` 
+                </blockquote>
+                </div>
+            </div>`
+            document.getElementById("productsComments").innerHTML = htmlContentToAppend;
 
 })
+
