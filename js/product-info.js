@@ -3,8 +3,6 @@ var currentProductsArray = [];
 var productRelacionados = [];
 var productComments = [];
 
-localStorage.setItem("contador", "0");
-
 function showImagesGallery(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
@@ -29,6 +27,33 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             product = resultObj.data;
+            showProductosRelacionados(product.relatedProducts);
+            //
+            //Productos relacionados
+            getJSONData(PRODUCTS_URL).then(function(resultObj) {
+                let htmlContentToAppend = "";
+                if (resultObj.status === "ok") {
+                    currentProductsArray = resultObj.data;
+                    for (var i = 0; i < productRelacionados.length; i++) {
+                        var imagenProducto = currentProductsArray[productRelacionados[i]].imgSrc
+                        var nombreProducto = currentProductsArray[productRelacionados[i]].name
+                        var precioProducto = currentProductsArray[productRelacionados[i]].cost
+                        var pesoProducto = currentProductsArray[productRelacionados[i]].currency
+                        htmlContentToAppend += `
+                        <div class="card" style="width: 150px;">
+                            <div class="card-body">
+                                <div class="card-img-top">
+                                    <img src="` + imagenProducto + `" class="img-thumbnail rounded card-img-top" style="width: 150px;">
+                                </div>
+                                <h6 class="card-title font-weight-bold">` + nombreProducto + `</h6>
+                                <p class="card-text">` + pesoProducto + ` ` + precioProducto + `</p>
+                                <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
+                            </div>
+                        </div> `
+                        document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
+                    }
+                }
+            });
             //
             let productNameHTML = document.getElementById("productName");
             let productDescriptionHTML = document.getElementById("productDescription");
@@ -39,46 +64,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             productCountHTML.innerHTML = product.currency + " " + product.cost;
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-            if (!localStorage.getItem("contador") == 1) {
-                localStorage.setItem("contador", "1");
-               // alert("primera");
-                location.reload();
-
-            } else {
-                //alert("ok");
-            }
-            showProductosRelacionados(product.relatedProducts);
-
+            
         }
     });
 
 
     
-    //Productos relacionados
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        let htmlContentToAppend = "";
-        if (resultObj.status === "ok") {
-            currentProductsArray = resultObj.data;
-            for (var i = 0; i < productRelacionados.length; i++) {
-                var imagenProducto = currentProductsArray[productRelacionados[i]].imgSrc
-                var nombreProducto = currentProductsArray[productRelacionados[i]].name
-                var precioProducto = currentProductsArray[productRelacionados[i]].cost
-                var pesoProducto = currentProductsArray[productRelacionados[i]].currency
-                htmlContentToAppend += `
-                <div class="card" style="width: 150px;">
-                    <div class="card-body">
-                        <div class="card-img-top">
-                            <img src="` + imagenProducto + `" class="img-thumbnail rounded card-img-top" style="width: 150px;">
-                        </div>
-                        <h6 class="card-title font-weight-bold">` + nombreProducto + `</h6>
-                        <p class="card-text">` + pesoProducto + ` ` + precioProducto + `</p>
-                        <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
-                    </div>
-                </div> `
-                document.getElementById("productosRelac").innerHTML = htmlContentToAppend;
-            }
-        }
-    });
+    
+
 
     //Comentarios productos
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
