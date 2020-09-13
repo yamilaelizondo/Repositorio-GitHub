@@ -3,6 +3,8 @@ var currentProductsArray = [];
 var productRelacionados = [];
 var productComments = [];
 
+localStorage.setItem("contador", "0");
+
 function showImagesGallery(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
@@ -37,10 +39,21 @@ document.addEventListener("DOMContentLoaded", function(e) {
             productCountHTML.innerHTML = product.currency + " " + product.cost;
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            if (!localStorage.getItem("contador") == 1) {
+                localStorage.setItem("contador", "1");
+               // alert("primera");
+                location.reload();
+
+            } else {
+                //alert("ok");
+            }
             showProductosRelacionados(product.relatedProducts);
+
         }
     });
 
+
+    
     //Productos relacionados
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         let htmlContentToAppend = "";
