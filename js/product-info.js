@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                         <div class="card-img-top">
                             <img src="` + imagenProducto + `" class="img-thumbnail rounded card-img-top" style="width: 150px;">
                         </div>
-                        <h6 class="card-title">` + nombreProducto + `</h6>
+                        <h6 class="card-title font-weight-bold">` + nombreProducto + `</h6>
                         <p class="card-text">` + pesoProducto + ` ` + precioProducto + `</p>
                         <a style="color: dodgerblue;" href="product-info.html">Ver más</a>
                     </div>
