@@ -167,5 +167,7 @@ function muestroEstrellas (textToAppend,score) {
 }
  
 document.getElementById("btnComment").addEventListener("click",function(){
+    document.getElementById("scoreSelector").value;
+    document.getElementById("commentArea").value;
 
 })
