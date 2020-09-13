@@ -167,30 +167,30 @@ function muestroEstrellas (textToAppend,score) {
 }
 
 document.getElementById("btnComment").addEventListener("click",function(){
-    //var comentario = document.getElementById("commentArea").value;
-    //var puntaje = document.getElementById("scoreSelector").value;
-    //var fecha = new Date().toLocaleString();
-    //var usuario = localStorage.getItem("usuario");
-    alert(localStorage.getItem('usuario') +" "+ "Gracias por tu comentario");
-    window.location.href = "product-info.html"; 
+    let htmlContentToAppend = "";
+    var comentario = document.getElementById("commentArea").value;
+    var puntaje = document.getElementById("scoreSelector").value;
+    var today = new Date();
+    var date = today.getDate() +"-"+(today.getMonth()+1) +"-"+today.getFullYear();
 
-    //var textToAppend = "";
-   // textToAppend = muestroEstrellas (textToAppend,puntaje);
+   var starToAppend = "";
+   starToAppend = muestroEstrellas (starToAppend,puntaje);
+   var oldComments = document.getElementById("productsComments").innerHTML;
 
     htmlContentToAppend += `
-            <div class="card">
-                <div class="card-header">
-                <h5><a href="#">`+ usuario + `</a></h5>
-                <small>` + fecha + `</small>
-                </div>
-                <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <h6>` + comentario + `</h6>
-                    `+ textToAppend + ` 
-                </blockquote>
-                </div>
-            </div>`
-            document.getElementById("productsComments").innerHTML = htmlContentToAppend;
-
+        <div class="card">
+            <div class="card-header">
+            <h5><a href="#">`+ localStorage.getItem("usuario") + `</a></h5>
+            <small>` + date + `</small>
+            </div>
+            <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <h6>` + comentario + `</h6>
+                `+ starToAppend + ` 
+            </blockquote>
+            </div>
+        </div>`
+        document.getElementById("productsComments").innerHTML = oldComments + htmlContentToAppend;
+        document.getElementById("commentArea").value = '';
 })
 
