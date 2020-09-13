@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 localStorage.setItem('usuario', formulario.userName.value);
                 localStorage.setItem('contrasenia', formulario.password.value);
                 alert("El usuario conectado es " + localStorage.getItem('usuario'));
-                window.location.reload();
-                window.location.href = "cart.html";
+                window.location.href = "mainPage.html";
             } 
             else{ 
                  alert("Porfavor ingrese, nombre de usuario y contraseña correctos."); 
