@@ -13,7 +13,7 @@ function showImagesGallery(array) {
         
         htmlContentToAppend += `
             <div class="carousel-item `+ activar +`">
-                <img src="` + imageSrc + `" class="d-block w-100" alt="">
+                <img src="` + imageSrc + `" style="width: 100%;">
             </div>`
         
         document.getElementById("carouselProductos").innerHTML = htmlContentToAppend;
