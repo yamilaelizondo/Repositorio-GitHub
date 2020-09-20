@@ -3,7 +3,7 @@ var currentProductsArray = [];
 var productRelacionados = [];
 var productComments = [];
 
-function showImagesGallery(array) {
+function showCarrusel(array) {
     let htmlContentToAppend = "";
     var activar;
     for (let i = 0; i < array.length; i++) {
@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCountHTML.innerHTML = product.currency + " " + product.cost;
-            //Muestro las imagenes en forma de galería
-            showImagesGallery(product.images);
+            //Muestro las imagenes en un carrusel
+            showCarrusel(product.images);
             
         }
     });
