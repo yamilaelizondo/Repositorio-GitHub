@@ -8,7 +8,7 @@ function showImagesGallery(array) {
     var activar;
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
-        if (i==4) activar = "active";
+        if (i==0) activar = "active";
         else activar = "";
         
         htmlContentToAppend += `
