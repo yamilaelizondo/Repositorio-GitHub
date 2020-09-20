@@ -6,6 +6,3 @@ if (localStorage.getItem("usuario") == undefined || localStorage.getItem("usuari
     logueado = true;
 }
 
-
-
-
