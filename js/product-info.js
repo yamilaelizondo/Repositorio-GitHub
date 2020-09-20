@@ -5,15 +5,18 @@ var productComments = [];
 
 function showImagesGallery(array) {
     let htmlContentToAppend = "";
+    var activar;
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
+        if (i==4) activar = "active";
+        else activar = "";
+        
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>`
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+            <div class="carousel-item `+ activar +`">
+                <img src="` + imageSrc + `" class="d-block w-100" alt="">
+            </div>`
+        
+        document.getElementById("carouselProductos").innerHTML = htmlContentToAppend;
     }
 }
 

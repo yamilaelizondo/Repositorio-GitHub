@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded",function() {
-    var a = document.createElement("a");
+    /*var a = document.createElement("a");
     a.classList.add("py-2", "d-none", "d-md-inline-block");
     a.href = "my-profile.html";
     a.innerHTML = localStorage.getItem("usuario");
@@ -11,17 +11,15 @@ document.addEventListener("DOMContentLoaded",function() {
     botoncerrasesion.href = "#";
     botoncerrasesion.innerText= "Cerrar sesión";
     botoncerrasesion.id="cerrar_btn";
-    document.getElementById("case").appendChild(botoncerrasesion);
-    document.getElementById("cerrar_btn").addEventListener ("click", function() {
-        localStorage.removeItem ("usuario");
-        window.location.href = "index.html";
-        window.location.reload();
-
-
+    document.getElementById("case").appendChild(botoncerrasesion);*/
+    document.getElementById("cerrar_btn").addEventListener("click", function(){
+      localStorage.clear();
+      window.location.href = "index.html";
     });
 
-    
+    document.getElementById("usuarioConectado").innerHTML = localStorage.getItem("usuario"); 
 }
+
 
 , false);
 
@@ -32,3 +30,7 @@ if (localStorage.getItem("usuario") == undefined || localStorage.getItem("usuari
 } else {
     logueado = true;
 }
+
+
+
+

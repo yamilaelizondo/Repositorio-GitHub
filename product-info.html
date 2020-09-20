@@ -25,6 +25,17 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="usuarioConectado" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>  
+          <a class="dropdown-item" href="cart.html">Mi carrito</a>
+          <a id="cerrar_btn" class="dropdown-item" href="#" onclick=" botonCerraSesion">Cerrar Sesión</a>
+        </div>
+      </div>
+    </div>
     </div>
   </nav>
   <main role="main">
@@ -45,8 +56,20 @@
 
         <dt>Imágenes ilustrativas</dt>
         <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+          <div id="carouselExampleControls" class="carousel slide col-4" data-ride="carousel">
+              <div class="carousel-inner" id="carouselProductos">
+              </div>
+
+              <a  class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                   <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+              </a>
           </div>
+
         </dd>
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="cart.html">Comprar</a>
