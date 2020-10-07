@@ -13,7 +13,7 @@ var barToAppend =
             `+localStorage.getItem("usuario")+`</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="my-profile.html">Mi perfil</a>  
-              <a class="dropdown-item" href="cart.html">Mi carrito</a>
+              <a class="dropdown-item" href="cart.html">Mi carrito </a>
               <a id="cerrar_btn" class="dropdown-item" href="#">Cerrar Sesión</a>
             </div>
           </div>
