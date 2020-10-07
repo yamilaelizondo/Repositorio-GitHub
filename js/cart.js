@@ -20,9 +20,26 @@ document.addEventListener("DOMContentLoaded", function(e){
               document.getElementById("tablaCarrito").innerHTML = htmlContentToAppend;
             }
         } 
-    });    
+    });
+    
+    document.getElementById("contadorProd").addEventListener("change",function(){
+        document.getElementById("contadorProd").value * unitCost;
+        
+    });
+
+    document.getElementById("premiumRadio").addEventListener("change", function(){
+        shippingPercentage = 0.15;
+        updateTotalCosts();
+    });
+    
+    document.getElementById("expressRadio").addEventListener("change", function(){
+        shippingPercentage = 0.07;
+        updateTotalCosts();
+    });
+
+    document.getElementById("standardRadio").addEventListener("change", function(){
+        shippingPercentage = 0.05;
+        updateTotalCosts();
+    });
 });
 
-document.getElementById("contadorProd").addEventListener("change",function(){
-
-});
