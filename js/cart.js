@@ -1,5 +1,10 @@
 var cartInfo = [];
 var cartArticles = [];
+let shippingPercentage = 0.15;
+
+function costoTotal(){
+    
+}
 
 document.addEventListener("DOMContentLoaded", function(e){
 
@@ -15,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 <td>`+ cartArticles[i].name +`</td>
                 <td>`+ cartArticles[i].currency + ` `  + cartArticles[i].unitCost +`</td>
                 <td><input class="form-control" style="width: 60px;" type="number" id="contadorProd"></td>
-                <td class="font-weight-bold" id="productSubtotal">UYU 200</td>
+                <td class="font-weight-bold" id="productSubtotal">UYU `+ resultado +`</td>
                 </tr>`
               document.getElementById("tablaCarrito").innerHTML = htmlContentToAppend;
             }
@@ -23,23 +28,25 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
     
     document.getElementById("contadorProd").addEventListener("change",function(){
-        document.getElementById("contadorProd").value * unitCost;
+        var contadorArt = document.getElementById("contadorProd").value;
+        var resultado = contadorArt * unitCost;
+       
         
     });
 
     document.getElementById("premiumRadio").addEventListener("change", function(){
         shippingPercentage = 0.15;
-        updateTotalCosts();
+        costoTotal();
     });
     
     document.getElementById("expressRadio").addEventListener("change", function(){
         shippingPercentage = 0.07;
-        updateTotalCosts();
+        costoTotal();
     });
 
     document.getElementById("standardRadio").addEventListener("change", function(){
         shippingPercentage = 0.05;
-        updateTotalCosts();
+        costoTotal();
     });
 });
 
