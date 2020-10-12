@@ -2,7 +2,7 @@ var cartInfo = [];
 var cartArticles = [];
 var subtotalParcial;
 var porcentajeEnvio = 0.15;
-var subTotalCompletoImporte = 0;  
+var subTotalCompletoImporte = 0;
 //let DOLLAR_SYMBOL = "USD ";
 //let PESO_SYMBOL = "UYU ";
 
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
             muestroSubTotal();
             muestroTotalProductos();
+            actualizoTotales();
         }
     });
 
@@ -56,14 +57,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.body.addEventListener('input', function (evt) {
         muestroSubTotal();
         muestroTotalProductos();
+        actualizoTotales();
     });
    
-    $('.radio input').change(function () {
-        var costoDeEnvio= $("input[name='opcion']:checked").val() * $("#productCostText").text();
-        importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
-        document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
-        document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
-     });
+    function actualizoTotales(){
+        $('.radio input').change(function () {
+            var costoDeEnvio= $("input[name='opcion']:checked").val() * $("#productCostText").text();
+            importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
+            document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
+            document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
+         });
+    }
+
 });
 
 
