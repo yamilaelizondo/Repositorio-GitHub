@@ -59,9 +59,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
    
     $('.radio input').change(function () {
-        var subTotalFinal = $("input[name='optradio']:checked").text();
-        var claseEnvio = $("input[name='optradio']:checked").val();
-        var costoEnvio = subTotalFinal*claseEnvio;
+        var costoDeEnvio= $("input[name='opcion']:checked").val() * $("#productCostText").text();
+        importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
+        document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
+        document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
      });
 });
 
