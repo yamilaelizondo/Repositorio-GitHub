@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <head>
-      <script src="js/global.js"></script>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <head>
+    <script src="js/global.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <title>eMercado - Todo lo que busques está aquí</title>
@@ -30,112 +34,119 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/dropzone.css" rel="stylesheet">
   </head>
-  <body>
-    <div id="barContainer"></div>
-      <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-md-8 order-md-1">
-            <div class="text-center p-4"><h2>Carrito de compras</h2></div>
+
+<body>
+  <div id="barContainer"></div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <div class="text-center p-4">
+          <h2>Carrito de compras</h2>
+        </div>
         <table class="table">
-            <h5 for="">Articulos a comprar</h5>
-            <thead class="thead-light">
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Costo</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody id="tablaCarrito">
-              
-            </tbody>
-          </table>
-          
-          <hr>
+          <h5 for="">Articulos a comprar</h5>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCarrito">
 
-            <h5 class="mb-3">Tipo de envio</h5>
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="premiumRadio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-                <label class="custom-control-label" for="premiumRadio">Premium 2 a 5 días (15%)</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="expressRadio" name="publicationType" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="expressRadio">Express 5 a 8 días (7%)</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="standardRadio" name="publicationType" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="standardRadio">Standar 12 a 15 días (5%)</label>
-              </div>
-            
-            <br>
-           
-            <h5 class="mb-3">Dirección de envio</h5>
-            <form class="needs-validation" id="sell-info">
-              <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Calle">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Número">
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                  <div class="col-md-12 mb-3">
-                    <input type="text" class="form-control" placeholder="Esquina">
-                  </div>
-                </div>
+          </tbody>
+        </table>
 
-              <hr class="mb-4">
+        <hr>
 
-              <h4 class="mb-3">Costos</h4>
-              <ul class="list-group mb-3">
-                  <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                      <h6 class="my-0">Subtotal</h6>
-                      <small class="text-muted">Unitario del producto</small>
-                    </div>
-                    <span class="text-muted" id="productCostText">-</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                      <h6 class="my-0">Costo del envío</h6>
-                      <small class="text-muted">Según el tipo de envío</small>
-                    </div>
-                    <span class="text-muted" id="comissionText">-</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>Total ($)</span>
-                    <strong id="totalCostText">-</strong>
-                  </li>
-                </ul>
-              <hr class="mb-4">
-              <div>
-                <h5 class="mb-3">Forma de pago</h5>
-                <p>No ha seleccionado <a href="">Seleccionar</a></p>
-              </div>
-              <br>
-              <button class="btn btn-primary btn-lg" type="submit">Finalizar compra</button>
-            </form>
+        <h5 class="mb-3">Tipo de envio</h5>
+        <div class="radio">
+          <label><input type="radio" name="opcion" value="0.15">Premium 2 a 5 días (15%)</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="opcion" value="0.07">Express 5 a 8 días (7%)</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="opcion" value="0.05">Standard 12 a 15 días (5%)</label>
+        </div>
+
+
+        <br>
+
+        <h5 class="mb-3">Dirección de envio</h5>
+        <form class="needs-validation" id="sell-info">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Calle">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Número">
+            </div>
           </div>
           <br>
-        </div>
-      </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <input type="text" class="form-control" placeholder="Esquina">
+            </div>
+          </div>
 
-      <footer class="text-muted">
-        <div class="container">
-            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-        </div>
-      </footer>
-      <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
-      <script src="js/jquery-3.4.1.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/dropzone.js"></script>
-      <script src="js/init.js"></script>
-      <script src="js/cart.js"></script>
-      <script src="js/navbar.js"></script>
-    </body>
+          <hr class="mb-4">
+
+          <h4 class="mb-3">Costos</h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+              </div>
+              <span class="text-muted" id="productCostText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo del envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="comissionText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total ($)</span>
+              <strong id="totalCostText">-</strong>
+            </li>
+          </ul>
+          <hr class="mb-4">
+          <div>
+            <h5 class="mb-3">Forma de pago</h5>
+            <p>No ha seleccionado <a href="">Seleccionar</a></p>
+          </div>
+          <br>
+          <button class="btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+        </form>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/navbar.js"></script>
+</body>
+
 </html>
