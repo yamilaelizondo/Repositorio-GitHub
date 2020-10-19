@@ -81,7 +81,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         });
         $('#confirmButton').click(function () {
-            validoCampos();
+            if (metodoDePago==""||metodoDePago==undefined||metodoDePago==null){
+                alert("Debe seleccionar un metodo de pago");
+            } else{
+                validoCampos();
+            }
         });
     }
     function validoCampos() {
@@ -98,7 +102,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 alert("Falta completar datos");
             }
         } else {
-
+            var numeroDeTarjeta = "";
+            var anioDeExpiracion = "";
+            var mesDeExpiracion = "";
+            var codigoDeSeguridad = "";
+            numeroDeTarjeta = $('#numeroDeTarjeta').val();
+            anioDeExpiracion = $('#añoExpiracion').val();
+            mesDeExpiracion = $('#mesExpiracion').val();
+            codigoDeSeguridad = $('#codigoSeguridad').val();
+            if (numeroDeTarjeta == "" || anioDeExpiracion == "" || mesDeExpiracion == "" || codigoDeSeguridad == "") {
+                alert("Falta completar datos"); 
+            }
         }
     }
 
