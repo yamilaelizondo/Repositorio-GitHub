@@ -1,10 +1,24 @@
 var cartInfo = [];
 var cartArticles = [];
 var subtotalParcial;
-var porcentajeEnvio = 0.15;
 var subTotalCompletoImporte = 0;
 var metodoDePago;
-
+//
+var numeroDeTarjeta = "";
+var anioDeExpiracion = "";
+var mesDeExpiracion = "";
+var codigoDeSeguridad = "";
+//
+var nombreDelBanco = "";
+var nombreDeUsuario = "";
+var contraeñaBanco = "";
+var numeroDeCuenta = "";
+//
+var calleUsuario = "";
+var numeroDeCalle = "";
+var esquinaDeCalle = "";
+var datosDePago = false;
+var datosDireccion = false;
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -35,11 +49,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
             muestroSubTotal();
             muestroTotalProductos();
             actualizoTotales();
+            deshabilitoCampos();
             agregoListeners();
         }
     });
-
+    //
     function muestroSubTotal() {
+        /*var articuloDeLista2 = document.querySelectorAll('.articuloDeLista');
+        for (var filas = 0; filas < articuloDeLista2.length; filas=filas+1){
+            console.log(articuloDeLista2[filas]);
+        }*/
         $('.articuloDeLista').each(function () {
             var precioUnitario = $(this).children('.currencyAndCost').text();
             var cantidad = $(this).children('.cantidadArt').children().val();
@@ -47,8 +66,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             $(this).children('.productSubtotal').text(subtotalParcial + " $U");
         });
     }
-
-
+    //
     function muestroTotalProductos() {
         subTotalCompletoImporte = 0;
         $('.articuloDeLista').each(function () {
@@ -70,48 +88,91 @@ document.addEventListener("DOMContentLoaded", function (e) {
             muestroTotalProductos();
             actualizoTotales();
         });
-        $('#metodoCredito').change(function () {
-           metodoDePago = $("input[name='pago']:checked").val();
-            $('#numeroDeTarjeta').prop( "disabled", false );
-            $('#añoExpiracion').prop( "disabled", false );
-            $('#mesExpiracion').prop( "disabled", false );
-            $('#codigoSeguridad').prop( "disabled", false );
-        });
-        $('#metodoBanco').change(function () {
-
-        });
         $('#confirmButton').click(function () {
-            if (metodoDePago==""||metodoDePago==undefined||metodoDePago==null){
+            if (metodoDePago == "" || metodoDePago == undefined || metodoDePago == null) {
                 alert("Debe seleccionar un metodo de pago");
-            } else{
+                datosDePago = false;
+            } else {
                 validoCampos();
             }
         });
+        $("[name='pago']").change(function () {
+            metodoDePago = $("input[name='pago']:checked").val();
+            datosDePago = false;
+            habilitoDeshabilitoCampos(metodoDePago);
+        });
+
+        $('#btnFinalizar').click(function () {
+            calleUsuario = $('#calleUser').val();
+            numeroDeCalle = $('#numeroDeCalle').val();
+            esquinaDeCalle = $('#esquinaUser').val();
+            if (calleUsuario == "" || numeroDeCalle == "" || esquinaDeCalle == "") {
+                alert("Falta completar datos de la dirección");
+                datosDireccion = false;
+            } else {
+                datosDireccion = true;
+                if((datosDireccion && datosDePago)){
+                    alert("todo piola");
+                }else{
+                    alert("Debe seleccionar metodo de pago");
+                }
+            }
+
+        });
     }
+
+
+    function deshabilitoCampos() {
+        $('.containerPayMethods input[type="text"]').each(function () {
+            $(this).prop("disabled", true);
+        });
+    }
+
+    function habilitoDeshabilitoCampos(metodoDePago) {
+        if (metodoDePago == "tCredito") {
+            $('#metodoPagoTarjeta input[type="text"]').each(function () {
+                $(this).prop("disabled", false);
+            });
+            $('#metodoPagoTransferencia input[type="text"]').each(function () {
+                $(this).prop("disabled", true);
+                $(this).val("");
+            });
+
+        } else {
+            $('#metodoPagoTarjeta input[type="text"]').each(function () {
+                $(this).prop("disabled", true);
+                $(this).val("");
+            });
+            $('#metodoPagoTransferencia input[type="text"]').each(function () {
+                $(this).prop("disabled", false);
+            });
+        }
+    }
+
     function validoCampos() {
         if (metodoDePago == "tCredito") {
-            var numeroDeTarjeta = "";
-            var anioDeExpiracion = "";
-            var mesDeExpiracion = "";
-            var codigoDeSeguridad = "";
             numeroDeTarjeta = $('#numeroDeTarjeta').val();
             anioDeExpiracion = $('#añoExpiracion').val();
             mesDeExpiracion = $('#mesExpiracion').val();
             codigoDeSeguridad = $('#codigoSeguridad').val();
             if (numeroDeTarjeta == "" || anioDeExpiracion == "" || mesDeExpiracion == "" || codigoDeSeguridad == "") {
-                alert("Falta completar datos");
+                alert("Falta completar datos de la tarjeta");
+                datosDePago = false;
+            } else {
+                alert("Datos de tarjeta guardados satisfactoriamente");
+                datosDePago = true;
             }
         } else {
-            var numeroDeTarjeta = "";
-            var anioDeExpiracion = "";
-            var mesDeExpiracion = "";
-            var codigoDeSeguridad = "";
-            numeroDeTarjeta = $('#numeroDeTarjeta').val();
-            anioDeExpiracion = $('#añoExpiracion').val();
-            mesDeExpiracion = $('#mesExpiracion').val();
-            codigoDeSeguridad = $('#codigoSeguridad').val();
-            if (numeroDeTarjeta == "" || anioDeExpiracion == "" || mesDeExpiracion == "" || codigoDeSeguridad == "") {
-                alert("Falta completar datos"); 
+            nombreDelBanco = $('#nombreBanco').val();
+            nombreDeUsuario = $('#nombreUser').val();
+            contraeñaBanco = $('#password').val();
+            numeroDeCuenta = $('#numeroCuenta').val();
+            if (nombreDelBanco == "" || nombreDeUsuario == "" || contraeñaBanco == "" || numeroDeCuenta == "") {
+                alert("Falta completar datos de la transferencia");
+                datosDePago = false;
+            } else {
+                alert("Datos de banco guardados satisfactoriamente");
+                datosDePago = true;
             }
         }
     }

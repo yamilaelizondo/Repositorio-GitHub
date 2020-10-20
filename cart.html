@@ -78,16 +78,16 @@
           <h5 class="mb-3">Dirección de envio</h5>
           <div class="row">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Calle">
+              <input type="text" class="form-control" placeholder="Calle" id="calleUser">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Número">
+              <input type="text" class="form-control" placeholder="Número" id="numeroDeCalle">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-12 mb-3">
-              <input type="text" class="form-control" placeholder="Esquina">
+              <input type="text" class="form-control" placeholder="Esquina" id="esquinaUser">
             </div>
           </div>
 
@@ -127,7 +127,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Metodo de Pago</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -139,23 +139,23 @@
                           <div id="metodoPagoTarjeta">
                             <input type="radio" name="pago" id="metodoCredito" value="tCredito">Tarjeta de Crédito
                             <br>
-                            <input type="text" placeholder="Número de tarjeta" id="numeroDeTarjeta" disabled>
+                            <input type="text" placeholder="Número de tarjeta" id="numeroDeTarjeta" >
                             <br><br>
                             <p>Fecha de expiración</p>
-                            <input type="text" placeholder="Año" id="añoExpiracion" disabled>
-                            <input type="text" placeholder="Mes" id="mesExpiracion" disabled>
-                            <input type="text" placeholder="Código de seguridad" id="codigoSeguridad" disabled>
+                            <input type="text" placeholder="Año" id="añoExpiracion" >
+                            <input type="text" placeholder="Mes" id="mesExpiracion" >
+                            <input type="text" placeholder="Código de seguridad" id="codigoSeguridad" >
                             <br><br>
                           </div>
                           <div id="metodoPagoTransferencia">
-                            <label><input type="radio" name="pago" id="metodoBanco">Transferencia Bancaria</label>
+                            <label><input type="radio" name="pago" id="metodoBanco" value="tBanco" >Transferencia Bancaria</label>
                             <br>
-                            <input type="text" placeholder="Nombre del Banco" id="nombreBanco" disabled>
+                            <input type="text" placeholder="Nombre del Banco" id="nombreBanco">
                             <br><br>
                             <p>Datos de la cuenta</p>
-                            <input type="text" placeholder="Usuario" id="nombreUser" disabled>
-                            <input type="text" placeholder="Contraseña" id="password" disabled>
-                            <input type="text" placeholder="Número de cuenta" id="numeroCuenta" disabled>
+                            <input type="text" placeholder="Usuario" id="nombreUser" >
+                            <input type="text" placeholder="Contraseña" id="password" >
+                            <input type="text" placeholder="Número de cuenta" id="numeroCuenta" >
                             <br><br>
                           </div>
                         </div>
@@ -172,7 +172,7 @@
             <!-- <p>No ha seleccionado <a href="">Seleccionar</a></p> -->
           </div>
           <br>
-          <button class="btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+          <button class="btn btn-primary btn-lg" type="submit" id="btnFinalizar">Finalizar compra</button>
         </form>
       </div>
       <br>
