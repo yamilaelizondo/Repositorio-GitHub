@@ -3,17 +3,17 @@ var cartArticles = [];
 var subtotalParcial;
 var subTotalCompletoImporte = 0;
 var metodoDePago;
-//
+//TARJETA
 var numeroDeTarjeta = "";
 var anioDeExpiracion = "";
 var mesDeExpiracion = "";
 var codigoDeSeguridad = "";
-//
+//BANCO
 var nombreDelBanco = "";
 var nombreDeUsuario = "";
 var contraeñaBanco = "";
 var numeroDeCuenta = "";
-//
+// DATOS PERSONALES
 var calleUsuario = "";
 var numeroDeCalle = "";
 var esquinaDeCalle = "";
@@ -21,7 +21,7 @@ var datosDePago = false;
 var datosDireccion = false;
 
 document.addEventListener("DOMContentLoaded", function (e) {
-
+    //peticion a URL e imprime datos en pantalla - llama metodos especificos 
     getJSONData("https://japdevdep.github.io/ecommerce-api/cart/654.json").then(function (resultObj) {
         let htmlContentToAppend = "";
         if (resultObj.status === "ok") {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     </td>
                     <td class="font-weight-bold productSubtotal"></td>
                     <td class="eliminarArt">
-                        <input class="btn btn-primary btn-sm eliminar" type="button" value="Eliminar">
+                        <input class="btn btn-info btn-sm eliminar" type="button" value="Eliminar">
                     </td>
                 </tr>`
                 document.getElementById("tablaCarrito").innerHTML = htmlContentToAppend;
@@ -53,12 +53,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
             agregoListeners();
         }
     });
-    //
+    //Metodo que captura los datos del precio y cantidad los multiplica para obtener el subtotal e imprmirlo
     function muestroSubTotal() {
-        /*var articuloDeLista2 = document.querySelectorAll('.articuloDeLista');
-        for (var filas = 0; filas < articuloDeLista2.length; filas=filas+1){
-            console.log(articuloDeLista2[filas]);
-        }*/
         $('.articuloDeLista').each(function () {
             var precioUnitario = $(this).children('.currencyAndCost').text();
             var cantidad = $(this).children('.cantidadArt').children().val();
@@ -66,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             $(this).children('.productSubtotal').text(subtotalParcial + " $U");
         });
     }
-    //
+    // Captura cada subtotal y los suma al subtotalCompleto / lo imprime en la tabla inferior
     function muestroTotalProductos() {
         subTotalCompletoImporte = 0;
         $('.articuloDeLista').each(function () {
@@ -76,18 +72,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
     }
 
+    //Captura el valor radio button seleccionado y calcula el costo de envio / lo suma al subtotalCompleto e imprime
+    function actualizoTotales() {
+        var costoDeEnvio = $("input[name='opcion']:checked").val() * $("#productCostText").text();
+        importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
+        document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
+        document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
+    }
+
+    //
     function agregoListeners() {
         $('.radio input').change(function () {
             actualizoTotales();
         });
+
         $('.eliminarArt input').click(function () {
             eliminarArticulo(this);
         });
+
         $('.cantidadArt input').change(function () {
             muestroSubTotal();
             muestroTotalProductos();
             actualizoTotales();
         });
+
         $('#confirmButton').click(function () {
             if (metodoDePago == "" || metodoDePago == undefined || metodoDePago == null) {
                 alert("Debe seleccionar un metodo de pago");
@@ -96,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 validoCampos();
             }
         });
+
         $("[name='pago']").change(function () {
             metodoDePago = $("input[name='pago']:checked").val();
             datosDePago = false;
@@ -111,9 +120,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 datosDireccion = false;
             } else {
                 datosDireccion = true;
-                if((datosDireccion && datosDePago)){
-                    alert("todo piola");
-                }else{
+                if ((datosDireccion && datosDePago)== true) {
+                    alert("Compra realizada con exito");
+                } else {
                     alert("Debe seleccionar metodo de pago");
                 }
             }
@@ -121,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
     }
 
-
+    //Deshabilita los campos de metodo de pago
     function deshabilitoCampos() {
         $('.containerPayMethods input[type="text"]').each(function () {
             $(this).prop("disabled", true);
         });
     }
-
+    //Deshabilita o hablita campos segun metodo de pago seleccionado y borra los campos 
     function habilitoDeshabilitoCampos(metodoDePago) {
         if (metodoDePago == "tCredito") {
             $('#metodoPagoTarjeta input[type="text"]').each(function () {
@@ -148,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             });
         }
     }
-
+    //
     function validoCampos() {
         if (metodoDePago == "tCredito") {
             numeroDeTarjeta = $('#numeroDeTarjeta').val();
@@ -176,22 +185,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
         }
     }
-
+    //Metodo que accede a la fila de un articulo y lo elimina / actualiza totales
     function eliminarArticulo(botonEliminar) {
         $(botonEliminar).parent().parent().remove();
         muestroSubTotal();
         muestroTotalProductos();
         actualizoTotales();
     }
-
-
-    function actualizoTotales() {
-        var costoDeEnvio = $("input[name='opcion']:checked").val() * $("#productCostText").text();
-        importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
-        document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
-        document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
-    }
-
 
 });
 
