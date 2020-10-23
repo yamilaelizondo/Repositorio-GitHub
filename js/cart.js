@@ -19,6 +19,7 @@ var numeroDeCalle = "";
 var esquinaDeCalle = "";
 var datosDePago = false;
 var datosDireccion = false;
+var mensajeFinal = "";
 
 document.addEventListener("DOMContentLoaded", function (e) {
     //peticion a URL e imprime datos en pantalla - llama metodos especificos 
@@ -82,20 +83,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     //
     function agregoListeners() {
+        //litener al radio button de envios
         $('.radio input').change(function () {
             actualizoTotales();
         });
-
+        // al boton eliminar
         $('.eliminarArt input').click(function () {
             eliminarArticulo(this);
         });
-
+        //al input de tipo number que suma los productos 
         $('.cantidadArt input').change(function () {
             muestroSubTotal();
             muestroTotalProductos();
             actualizoTotales();
         });
-
+        // boton finalizar compra que valida todos los datos necesarios ingresados 
         $('#confirmButton').click(function () {
             if (metodoDePago == "" || metodoDePago == undefined || metodoDePago == null) {
                 alert("Debe seleccionar un metodo de pago");
@@ -104,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 validoCampos();
             }
         });
-
+        //
         $("[name='pago']").change(function () {
             metodoDePago = $("input[name='pago']:checked").val();
             datosDePago = false;
@@ -120,8 +122,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 datosDireccion = false;
             } else {
                 datosDireccion = true;
-                if ((datosDireccion && datosDePago)== true) {
-                    alert("Compra realizada con exito");
+                if ((datosDireccion && datosDePago) == true) {
+                    getJSONData("https://japdevdep.github.io/ecommerce-api/cart/buy.json").then(function (resultObj){
+                        if(resultObj.status === "ok") {
+                            mensajeFinal = resultObj.data;
+                            alert(mensajeFinal.msg);
+                        }
+                    })
                 } else {
                     alert("Debe seleccionar metodo de pago");
                 }
