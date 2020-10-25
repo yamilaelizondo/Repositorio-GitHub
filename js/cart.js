@@ -19,6 +19,8 @@ var numeroDeCalle = "";
 var esquinaDeCalle = "";
 var datosDePago = false;
 var datosDireccion = false;
+var productosEnCarrito = false;
+
 var mensajeFinal = "";
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -103,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 alert("Debe seleccionar un metodo de pago");
                 datosDePago = false;
             } else {
-                validoCampos();
+                validoCamposMetodoDePago();
             }
         });
         //
@@ -117,21 +119,29 @@ document.addEventListener("DOMContentLoaded", function (e) {
             calleUsuario = $('#calleUser').val();
             numeroDeCalle = $('#numeroDeCalle').val();
             esquinaDeCalle = $('#esquinaUser').val();
-            if (calleUsuario == "" || numeroDeCalle == "" || esquinaDeCalle == "") {
-                alert("Falta completar datos de la dirección");
-                datosDireccion = false;
+            cuentaProductos = $('.cantidadArt').children().val();
+            if (cuentaProductos == 0) {
+                alert("Carrito vacio");
+                productosEnCarrito = false;
             } else {
-                datosDireccion = true;
-                if ((datosDireccion && datosDePago) == true) {
-                    getJSONData("https://japdevdep.github.io/ecommerce-api/cart/buy.json").then(function (resultObj){
-                        if(resultObj.status === "ok") {
-                            mensajeFinal = resultObj.data;
-                            alert(mensajeFinal.msg);
-                        }
-                    })
+                productosEnCarrito = true;
+                if (calleUsuario == "" || numeroDeCalle == "" || esquinaDeCalle == "") {
+                    alert("Falta completar datos de la dirección");
+                    datosDireccion = false;
                 } else {
-                    alert("Debe seleccionar metodo de pago");
+                    datosDireccion = true;
+                    if ((datosDireccion && datosDePago && productosEnCarrito) == true) {
+                        getJSONData("https://japdevdep.github.io/ecommerce-api/cart/buy.json").then(function (resultObj) {
+                            if (resultObj.status === "ok") {
+                                mensajeFinal = resultObj.data;
+                                alert(mensajeFinal.msg);
+                            }
+                        })
+                    } else {
+                        alert("Debe seleccionar metodo de pago");
+                    }
                 }
+
             }
 
         });
@@ -165,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     }
     //
-    function validoCampos() {
+    function validoCamposMetodoDePago() {
         if (metodoDePago == "tCredito") {
             numeroDeTarjeta = $('#numeroDeTarjeta').val();
             anioDeExpiracion = $('#añoExpiracion').val();
