@@ -58,28 +58,45 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
     //Metodo que captura los datos del precio y cantidad los multiplica para obtener el subtotal e imprmirlo
     function muestroSubTotal() {
+        var precioUnitario = 0;
+        var cantidad = 0;
+        subtotalParcial = 0;
         carritoVacio = true;
-        $('.articuloDeLista').each(function () {
-            carritoVacio = false;
-            var precioUnitario = $(this).children('.currencyAndCost').text();
-            var cantidad = $(this).children('.cantidadArt').children().val();
-            subtotalParcial = precioUnitario * cantidad;
-            $(this).children('.productSubtotal').text(subtotalParcial + " $U");
-        });
+        if ($('.articuloDeLista').length > 0) {
+            $('.articuloDeLista').each(function () {
+                carritoVacio = false;
+                precioUnitario = $(this).children('.currencyAndCost').text();
+                cantidad = $(this).children('.cantidadArt').children().val();
+                subtotalParcial = precioUnitario * cantidad;
+                $(this).children('.productSubtotal').text(subtotalParcial + " $U");
+            });
+        } else {
+            reseteoCampos();
+        }
+    }
+    function reseteoCampos() {
+        $("#productCostText").text("0");
+        $("#comissionText").text("0");
+        $("#totalCostText").text("0");
     }
     // Captura cada subtotal y los suma al subtotalCompleto / lo imprime en la tabla inferior
     function muestroTotalProductos() {
+        var subTotalCompleto = 0;
         subTotalCompletoImporte = 0;
-        $('.articuloDeLista').each(function () {
-            var subTotalCompleto = parseFloat($(this).children('.productSubtotal').text());
-            subTotalCompletoImporte += subTotalCompleto;
-            document.getElementById("productCostText").innerHTML = subTotalCompletoImporte;
-        });
+        if ($('.articuloDeLista').length > 0) {
+            $('.articuloDeLista').each(function () {
+                subTotalCompleto = parseFloat($(this).children('.productSubtotal').text());
+                subTotalCompletoImporte += subTotalCompleto;
+                document.getElementById("productCostText").innerHTML = subTotalCompletoImporte;
+            });
+        }
     }
 
     //Captura el valor radio button seleccionado y calcula el costo de envio / lo suma al subtotalCompleto e imprime
     function actualizoTotales() {
-        var costoDeEnvio = $("input[name='opcion']:checked").val() * $("#productCostText").text();
+        var costoDeEnvio = 0;
+        importeTotal = 0;
+        costoDeEnvio = $("input[name='opcion']:checked").val() * $("#productCostText").text();
         importeTotal = costoDeEnvio + parseFloat($("#productCostText").text());
         document.getElementById("comissionText").innerHTML = costoDeEnvio.toFixed(0);
         document.getElementById("totalCostText").innerHTML = importeTotal.toFixed(0);
@@ -97,10 +114,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
         //al input de tipo number que suma los productos 
         $('.cantidadArt input').change(function () {
-            muestroSubTotal();
-            muestroTotalProductos();
-            actualizoTotales();
+            if ($(this).val() == 0) {
+                eliminarArticulo(this);
+            } else {
+                muestroSubTotal();
+                muestroTotalProductos();
+                actualizoTotales();
+            }
         });
+
         // boton finalizar compra que valida todos los datos necesarios ingresados 
         $('#confirmButton').click(function () {
             if (metodoDePago == "" || metodoDePago == undefined || metodoDePago == null) {
@@ -110,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 validoCamposMetodoDePago();
             }
         });
+
         //
         $("[name='pago']").change(function () {
             metodoDePago = $("input[name='pago']:checked").val();
@@ -146,12 +169,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                             alert("Debe seleccionar metodo de pago");
                         }
                     }
-
                 }
-
             }
-
-
         });
     }
 
