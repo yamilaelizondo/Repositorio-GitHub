@@ -20,7 +20,7 @@ var esquinaDeCalle = "";
 var datosDePago = false;
 var datosDireccion = false;
 var productosEnCarrito = false;
-
+var carritoVacio = true;
 var mensajeFinal = "";
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
     //Metodo que captura los datos del precio y cantidad los multiplica para obtener el subtotal e imprmirlo
     function muestroSubTotal() {
+        carritoVacio = true;
         $('.articuloDeLista').each(function () {
+            carritoVacio = false;
             var precioUnitario = $(this).children('.currencyAndCost').text();
             var cantidad = $(this).children('.cantidadArt').children().val();
             subtotalParcial = precioUnitario * cantidad;
@@ -120,29 +122,35 @@ document.addEventListener("DOMContentLoaded", function (e) {
             numeroDeCalle = $('#numeroDeCalle').val();
             esquinaDeCalle = $('#esquinaUser').val();
             cuentaProductos = $('.cantidadArt').children().val();
-            if (cuentaProductos == 0) {
+            if (carritoVacio == true) {
                 alert("Carrito vacio");
-                productosEnCarrito = false;
             } else {
-                productosEnCarrito = true;
-                if (calleUsuario == "" || numeroDeCalle == "" || esquinaDeCalle == "") {
-                    alert("Falta completar datos de la dirección");
-                    datosDireccion = false;
+                if (cuentaProductos == 0) {
+                    alert("Carrito vacio");
+                    productosEnCarrito = false;
                 } else {
-                    datosDireccion = true;
-                    if ((datosDireccion && datosDePago && productosEnCarrito) == true) {
-                        getJSONData("https://japdevdep.github.io/ecommerce-api/cart/buy.json").then(function (resultObj) {
-                            if (resultObj.status === "ok") {
-                                mensajeFinal = resultObj.data;
-                                alert(mensajeFinal.msg);
-                            }
-                        })
+                    productosEnCarrito = true;
+                    if (calleUsuario == "" || numeroDeCalle == "" || esquinaDeCalle == "") {
+                        alert("Falta completar datos de la dirección");
+                        datosDireccion = false;
                     } else {
-                        alert("Debe seleccionar metodo de pago");
+                        datosDireccion = true;
+                        if ((datosDireccion && datosDePago && productosEnCarrito) == true) {
+                            getJSONData("https://japdevdep.github.io/ecommerce-api/cart/buy.json").then(function (resultObj) {
+                                if (resultObj.status === "ok") {
+                                    mensajeFinal = resultObj.data;
+                                    alert(mensajeFinal.msg);
+                                }
+                            })
+                        } else {
+                            alert("Debe seleccionar metodo de pago");
+                        }
                     }
+
                 }
 
             }
+
 
         });
     }
