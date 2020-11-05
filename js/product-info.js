@@ -13,7 +13,7 @@ function showCarrusel(array) {
         
         htmlContentToAppend += `
             <div class="carousel-item `+ activar +`">
-                <img src="` + imageSrc + `" style="width: 100%;">
+                <img src="` + imageSrc + `" style="width:100%;">
             </div>`
         
         document.getElementById("carouselProductos").innerHTML = htmlContentToAppend;
