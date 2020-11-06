@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(e) {
-    const formulario = document.getElementById("loginForm");
+    var usuario = "";
+    var contrasenia = "";
 
-    formulario.loginButton.addEventListener("click", function() {
-        if (formulario.userName.value == 'user@mail.com' && formulario.password.value == '1234') {
-            localStorage.setItem('usuario', formulario.userName.value);
-            localStorage.setItem('contrasenia', formulario.password.value);
-            $(location).attr('href', 'cart.html');
+    $("#loginButton").click(function() {
+        usuario = $("#inputUserName").val();
+        contrasenia = $("#inputContraseña").val();
+        if (usuario == "yami@mail.com" && contrasenia == "1234") {
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('contrasenia', contrasenia);
+            $(location).attr('href', 'mainPage.html');
         } else {
-            $(location).attr('href', 'index.html');
-            alert("Porfavor ingrese, nombre de usuario y contraseña correctos.");
+            alert("Error con usuario y o contraseña");
         }
+
     });
 });
