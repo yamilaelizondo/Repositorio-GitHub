@@ -1,8 +1,6 @@
 var listaUsuarios = [];
-var jsonData;
 var usuario = "";
 var contrasenia = "";
-
 class Usuario {
     constructor(nombre, apellido, edad, email, telefono, contraseña) {
         this.nombre = nombre;
@@ -16,7 +14,6 @@ class Usuario {
 
 document.addEventListener("DOMContentLoaded", function(e) {
 
-
     $("#registerButton").click(function() {
         crearUsuario($("#nameUser").val(), $("#surnameUser").val(), $("#ageUser").val(), $("#emailUser").val(),
             $("#mobileUser").val(), $("#passwordUser").val());
@@ -29,30 +26,36 @@ document.addEventListener("DOMContentLoaded", function(e) {
         } else {
             localStorage.setItem("LISTA_DE_USUARIOS", JSON.stringify(nuevoUsuario));
         }
-        //listaUsuarios.push(nuevoUsuario);
-        //guardoListaDeUsuariosEnLocalStorage();
-    }
-
-    function guardoListaDeUsuariosEnLocalStorage() {
-
-
-        //console.log(localStorage.getItem("LISTA_DE_USUARIOS"));
     }
 
     function reconviertoAJson() {
-        var listaUsuarios = [];
-        jsonData = JSON.parse(localStorage.getItem("LISTA_DE_USUARIOS"));
-        alert(jsonData.length);
-        for (var i = 0; i < jsonData.length; i++) {
-            var userData = jsonData[i];
-            if (usuario == userData.email && contrasenia == userData.contraseña) {
-                alert(userData.nombre);
-                window.location.href = "mainPage.html";
-            }
-            //crearUsuario(userData.nombre, userData.apellido, userData.edad, userData.email, userData.telefono, userData.contraseña);
-        }
-    }
+        if (!localStorage.getItem("LISTA_DE_USUARIOS") == "" || (!localStorage.getItem("LISTA_DE_USUARIOS") == null)) {
 
+            var jsonData = JSON.parse(localStorage.getItem("LISTA_DE_USUARIOS"));
+            console.log(jsonData.length);
+            for (var i = 0; i < jsonData.length; i++) {
+                var userData = jsonData[i];
+                alert("hola");
+                if (usuario == userData.email && contrasenia == userData.contraseña) {
+
+                    alert("Bienvenido " + userData.nombre);
+                    //
+                    localStorage.setItem("NOMBRE", userData.nombre);
+                    localStorage.setItem("APELLIDO", userData.apellido);
+                    localStorage.setItem("EDAD", userData.edad);
+                    localStorage.setItem("EMAIL", userData.email);
+                    localStorage.setItem("TELÉFONO", userData.telefono);
+                    localStorage.setItem("CONTRASEÑA", userData.contraseña);
+                    //
+                    window.location.href = "mainPage.html";
+                }
+                //crearUsuario(userData.nombre, userData.apellido, userData.edad, userData.email, userData.telefono, userData.contraseña);
+            }
+        } else {
+            alert("cualquiera");
+        }
+
+    }
 
     $("#loginButton").click(function() {
         usuario = $("#inputUserName").val();
