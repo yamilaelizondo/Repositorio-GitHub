@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded",function(){
-var barToAppend = //site-header sticky-top py-1 bg-dark//
-    `
+document.addEventListener("DOMContentLoaded", function() {
+    var barToAppend = //site-header sticky-top py-1 bg-dark//
+        `
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="mainPage.html">Inicio</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@ var barToAppend = //site-header sticky-top py-1 bg-dark//
       </li>
       <li class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="usuarioConectado" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            `+localStorage.getItem("usuario")+`
+            ` + localStorage.getItem("NOMBRE") + " " + localStorage.getItem("APELLIDO") + `
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
@@ -35,9 +35,9 @@ var barToAppend = //site-header sticky-top py-1 bg-dark//
 
 
 
-    document.getElementById("cerrar_btn").addEventListener("click", function(){
-        localStorage.clear();
+    document.getElementById("cerrar_btn").addEventListener("click", function() {
+        //localStorage.clear();
         window.location.href = "index.html";
         alert("Gracias por su visita");
-      });
+    });
 });
