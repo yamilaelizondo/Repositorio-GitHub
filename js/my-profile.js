@@ -64,11 +64,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         actualizoDatos();
 
     });
-    //
-    const recentImageDataUrl = localStorage.getItem("recent_reader");
-    if (recentImageDataUrl) {
-        document.querySelector("#imagePreview").setAttribute("src", recentImageDataUrl);
-    }
 
     function actualizoDatos() {
         const start = "[";
