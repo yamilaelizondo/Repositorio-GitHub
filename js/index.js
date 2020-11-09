@@ -21,15 +21,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
     function crearUsuario(nombre, apellido, edad, email, telefono, contraseña) {
         if (!localStorage.getItem("LISTA_DE_USUARIOS") == "" || (!localStorage.getItem("LISTA_DE_USUARIOS") == null)) {
             localStorage.setItem("LISTA_DE_USUARIOS", (localStorage.getItem("LISTA_DE_USUARIOS")) + JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña, "")));
-            //
-
         } else {
             localStorage.setItem("LISTA_DE_USUARIOS", (start + JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña, "")) + end));
         }
     }
 
     function reconviertoAJson(usuario, contrasenia) {
-
         var existe = false;
         localStorage.setItem("LISTA_DE_USUARIOS", (localStorage.getItem("LISTA_DE_USUARIOS").replace(/}]{/gm, "},{").replace(/}{/, "},{").replace(/]+/gm, "")) + end);
         console.log(localStorage.getItem(("LISTA_DE_USUARIOS")));
@@ -51,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
         if (existe == false) {
-            alert("error con el usuario y/o la contraseña");
+            alert("Error con el usuario y/o la contraseña");
         }
     }
 
