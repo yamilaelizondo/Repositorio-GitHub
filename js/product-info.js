@@ -8,14 +8,14 @@ function showCarrusel(array) {
     var activar;
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
-        if (i==0) activar = "active";
+        if (i == 0) activar = "active";
         else activar = "";
-        
+
         htmlContentToAppend += `
-            <div class="carousel-item `+ activar +`">
+            <div class="carousel-item ` + activar + `">
                 <img src="` + imageSrc + `" style="width:100%;">
             </div>`
-        
+
         document.getElementById("carouselProductos").innerHTML = htmlContentToAppend;
     }
 }
@@ -67,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
             productCountHTML.innerHTML = product.currency + " " + product.cost;
             //Muestro las imagenes en un carrusel
             showCarrusel(product.images);
-            
+
         }
     });
 
 
-    
-    
+
+
 
 
     //Comentarios productos

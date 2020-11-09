@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(e) {
+
     var htmlContentToAppend = "";
     htmlContentToAppend += `
         <div class="container rounded bg-white mt-5">
@@ -6,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 <div class="col-md-4 border-right">
                 <div class="avatar-upload">
                 <div class="avatar-edit">
-                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg, .gif" />
                     <label for="imageUpload"></label>
                 </div>
                 <div class="avatar-preview">
-                    <div id="imagePreview" style="background-image: url('img/avatar.jpg');"></div>
+                    <div id="imagePreview" style="background-image: url('` + localStorage.getItem("IMAGEN_DE_PERFIL") + `');"></div>
                 </div>
          </div>
                 </div>
@@ -49,17 +50,25 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
                 $('#imagePreview').hide();
                 $('#imagePreview').fadeIn(650);
+                localStorage.setItem("IMAGEN_DE_PERFIL", e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
+    //
     $("#imageUpload").change(function() {
         readURL(this);
     });
-
+    //
     $('#guardarButton').click(function() {
         actualizoDatos();
+
     });
+    //
+    const recentImageDataUrl = localStorage.getItem("recent_reader");
+    if (recentImageDataUrl) {
+        document.querySelector("#imagePreview").setAttribute("src", recentImageDataUrl);
+    }
 
     function actualizoDatos() {
         const start = "[";
@@ -70,14 +79,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
         jsonData = JSON.parse(editoStringOne); //PARSEO EL STRING A OBJETO JSON
         for (var i = 0; i < jsonData.length; i++) {
             var userData = jsonData[i];
-            console.log(userData);
-            console.log(jsonData);
-            console.log($("#inputEmail").val());
             if ($("#inputEmail").val() == userData.email) {
                 userData.nombre = $("#inputName").val();
                 userData.apellido = $("#inputSurname").val();
                 userData.edad = $("#inputAge").val();
                 userData.telefono = $("#inputMobile").val();
+                userData.imagen = localStorage.getItem("IMAGEN_DE_PERFIL");
                 //
                 localStorage.setItem("NOMBRE", userData.nombre);
                 localStorage.setItem("APELLIDO", userData.apellido);

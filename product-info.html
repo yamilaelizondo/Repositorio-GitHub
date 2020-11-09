@@ -3,111 +3,112 @@
 <html lang="en">
 
 <head>
-  <script src="https://kit.fontawesome.com/27cab85f94.js" crossorigin="anonymous"></script>
-  <script src="js/global.js"></script>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <script src="https://kit.fontawesome.com/27cab85f94.js" crossorigin="anonymous"></script>
+    <script src="js/global.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="barContainer"></div>
-  <main role="main">
-    <div class="container mt-5">
-      <h2 class="text-center">Información del producto</h2>
-      <h3 id="productName"></h3>
-      <hr class="my-3">
-      <dl>
-        <dt>Descripción</dt>
-        <dd>
-          <p id="productDescription"></p>
-        </dd>
+    <div id="barContainer"></div>
+    <main role="main">
+        <div class="container mt-5">
+            <h2 class="text-center">Información del producto</h2>
+            <hr>
+            <h4 id="productName"></h4>
+            <hr class="my-3">
+            <dl>
+                <dt>Descripción</dt>
+                <dd>
+                    <p id="productDescription"></p>
+                </dd>
 
-        <dt>Precio</dt>
-        <dd>
-          <p id="productCost"></p>
-        </dd>
+                <dt>Precio</dt>
+                <dd>
+                    <p id="productCost"></p>
+                </dd>
 
-        <dt>Imágenes ilustrativas</dt>
-        <dd>
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 50%;">
-              <div class="carousel-inner" id="carouselProductos" style="width: 100%;">
+                <dt>Imágenes ilustrativas</dt>
+                <dd>
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 50%;">
+                        <div class="carousel-inner" id="carouselProductos" style="width: 100%;">
 
-                
-              </div>
 
-              <a  class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                   <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-              </a>
-          </div>
+                        </div>
 
-        </dd>
-      </dl>
-      <a type="button" class="btn btn-light btn-lg btn-block" href="cart.html">Comprar</a>
-      <br>
-      <dt>Productos Relacionados</dt>
-      <hr>
-      <dd>
-      <div id="productosRelac" class="row d-flex equal"></div>
-    </dd>
-       <br>
-    <dt>Comentarios</dt>
-    <hr>
-      <dd>
-      <div id="productsComments"></div>
-    </dd>
-    <div id="newComment"></div>
-    <br>
-    <dt>Deja tu comentario</dt>
-    <hr>
-   <div id="dejarComentario">
-     <textarea name="" id="commentArea" cols="30" rows="3" placeholder="Escribir comentario"></textarea>
-     <br>
-     <label for="stars">Puntuación:</label>
-     <select name="stars" id="scoreSelector">
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </dd>
+            </dl>
+            <a type="button" class="btn btn-light btn-lg btn-block" href="cart.html">Comprar</a>
+            <br>
+            <dt>Productos Relacionados</dt>
+            <hr>
+            <dd>
+                <div id="productosRelac" class="row d-flex equal"></div>
+            </dd>
+            <br>
+            <dt>Comentarios</dt>
+            <hr>
+            <dd>
+                <div id="productsComments"></div>
+            </dd>
+            <div id="newComment"></div>
+            <br>
+            <dt>Deja tu comentario</dt>
+            <hr>
+            <div id="dejarComentario">
+                <textarea name="" id="commentArea" cols="30" rows="3" placeholder="Escribir comentario"></textarea>
+                <br>
+                <label for="stars">Puntuación:</label>
+                <select name="stars" id="scoreSelector">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
     </select> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button type="submit" class="btn btn-success" id="btnComment">Enviar</button>
-   </div>
+            </div>
+        </div>
+    </main>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a>para descargar la letra del obligatorio.</p>
+        </div>
+    </footer>
+    <div id="spinner-wrapper">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a>para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-  <script src="js/navbar.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>

@@ -1,51 +1,41 @@
 class Usuario {
-    constructor(nombre, apellido, edad, email, telefono, contraseña) {
+    constructor(nombre, apellido, edad, email, telefono, contraseña, imagen) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.email = email;
         this.telefono = telefono;
         this.contraseña = contraseña;
+        this.imagen = imagen;
     }
 }
-
 document.addEventListener("DOMContentLoaded", function(e) {
 
     $("#registerButton").click(function() {
         crearUsuario($("#nameUser").val(), $("#surnameUser").val(), $("#ageUser").val(), $("#emailUser").val(),
             $("#mobileUser").val(), $("#passwordUser").val());
     });
+    const start = "[";
+    const end = "]";
 
     function crearUsuario(nombre, apellido, edad, email, telefono, contraseña) {
         if (!localStorage.getItem("LISTA_DE_USUARIOS") == "" || (!localStorage.getItem("LISTA_DE_USUARIOS") == null)) {
-            localStorage.setItem("LISTA_DE_USUARIOS", (localStorage.getItem("LISTA_DE_USUARIOS")) + JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña)));
+            localStorage.setItem("LISTA_DE_USUARIOS", (localStorage.getItem("LISTA_DE_USUARIOS")) + JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña, "")));
+            //
+
         } else {
-            localStorage.setItem("LISTA_DE_USUARIOS", (JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña))));
+            localStorage.setItem("LISTA_DE_USUARIOS", (start + JSON.stringify(new Usuario(nombre, apellido, edad, email, telefono, contraseña, "")) + end));
         }
     }
 
     function reconviertoAJson(usuario, contrasenia) {
-        const start = "[";
-        const end = "]";
+
         var existe = false;
-        //
-        var str = localStorage.getItem("LISTA_DE_USUARIOS");
-        var n = str.includes(start || end);
-        if (n == false) {
-            var editoStringOne = start + localStorage.getItem("LISTA_DE_USUARIOS") + end;
-            var editoStringTwo = editoStringOne.replace(/}/g, "},");
-            var editoStringTwo = editoStringOne.replace(/}/g, "},");
-            var editoStringFinal = editoStringTwo.replace(/},]/g, "}]");
-            localStorage.setItem("LISTA_DE_USUARIOS", editoStringFinal);
-        } else {
-            var editoStringOne = localStorage.getItem("LISTA_DE_USUARIOS");
-            var editoStringTwo = editoStringOne.replace(/}]{/g, "},{");
-            var editoStringFinal = editoStringTwo.replace(/\/}/g, "}]");
-            console.log(editoStringFinal);
-            localStorage.setItem("LISTA_DE_USUARIOS", editoStringFinal + end);
-        }
+        localStorage.setItem("LISTA_DE_USUARIOS", (localStorage.getItem("LISTA_DE_USUARIOS").replace(/}]{/gm, "},{").replace(/}{/, "},{").replace(/]+/gm, "")) + end);
+        console.log(localStorage.getItem(("LISTA_DE_USUARIOS")));
 
         var jsonData = JSON.parse(localStorage.getItem(("LISTA_DE_USUARIOS")));
+
         for (var i = 0; i < jsonData.length; i++) {
             var userData = jsonData[i];
             if (usuario == userData.email && contrasenia == userData.contraseña) {
@@ -56,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 localStorage.setItem("EMAIL", usuario);
                 localStorage.setItem("TELÉFONO", userData.telefono);
                 localStorage.setItem("CONTRASEÑA", userData.contraseña);
+                localStorage.setItem("IMAGEN_DE_PERFIL", userData.imagen);
                 window.location.href = "mainPage.html";
             }
         }
